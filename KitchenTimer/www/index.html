@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>KitchenTimer Example</title>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+	<meta charset="utf-8">
+
+	<script type="text/javascript" charset="utf-8" src="cordova-1.9.0.js"></script>
+    <script type="text/javascript">
+
+	
+      var timer;
+      document.addEventListener("deviceready", init, false);
+      
+      function init(){
+        document.getElementById('timerStart').addEventListener('click', timerStart, false);
+        document.getElementById('timerStop').addEventListener('click', timerStop, false);
+        
+        for(i=0; i<60; i++){
+          // 分・秒を選択するDOMを生成し、それぞれの<select>に挿入
+          var minuteItem = document.createElement('option');
+          var secondItem = document.createElement('option');
+          minuteItem.value = i;
+          minuteItem.textContent = i;
+          secondItem.value = i;
+          secondItem.textContent = i;
+          
+          
+          document.getElementById('timerMinute').appendChild(minuteItem);
+          document.getElementById('timerSecond').appendChild(secondItem);
+        }
+      }
+      
+      function timerStart(){
+        timer = setInterval(countDown, 1000);
+        
+        // プルダウン、スタートボタンを無効に
+        document.getElementById('timerMinute').disabled = true;
+        document.getElementById('timerSecond').disabled = true;
+        document.getElementById('timerStart').disabled = true;
+        
+        // 停止ボタンを有効に
+        document.getElementById('timerStop').disabled = false;
+
+      }
+      
+      function timerStop(){
+        clearInterval(timer);
+        
+        // プルダウン、スタートボタンを有効に
+        document.getElementById('timerMinute').disabled = false;
+        document.getElementById('timerSecond').disabled = false;
+        document.getElementById('timerStart').disabled = false;
+        
+        // 停止ボタンを無効に
+        document.getElementById('timerStop').disabled = true;
+      }
+      
+      function countDown(){
+        var min = document.getElementById('timerMinute').selectedIndex;
+        var sec = document.getElementById('timerSecond').selectedIndex;
+        var int = (min*60+sec-1)
+        
+        // タイマー更新
+        document.getElementById('timerMinute').selectedIndex = Math.floor(int/60);
+        document.getElementById('timerSecond').selectedIndex = int % 60;
+        
+        // タイマー完了
+        if( 0 > int ){
+          timerStop();
+          var min = document.getElementById('timerMinute').selectedIndex = 0;
+          var sec = document.getElementById('timerSecond').selectedIndex = 0;
+          
+          // バイブ通知をミリ秒で指定
+          navigator.notification.vibrate(3000);
+          navigator.notification.alert('タイマーが完了しました');
+        }
+      }
+      
+    </script>
+    <style type="text/css">
+      * {
+        font-size: 15pt;
+      }
+      body {
+        margin: 0;
+        text-align: center;
+      }
+      h1 {
+        margin: 0;
+        background-color: #889bb3;
+        color: #ffffff;
+        font-size: 18pt;
+      }
+      div {
+        margin: 50px 0 50px 0;
+      }
+    </style>
+    
+  </head>
+  <body>
+	<h1>キッチンタイマー</h1>
+  <div>
+    <select id="timerMinute"></select> 分
+    <select id="timerSecond"></select> 秒
+  </div>
+  <p><button id="timerStart">タイマー開始</button></p>
+  <p><button id="timerStop" disabled>タイマー停止</button></p>
+  </body>
+</html>

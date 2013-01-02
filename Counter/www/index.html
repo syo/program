@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Counter Example</title>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+	<meta charset="utf-8">
+    <script type="text/javascript">
+        window.addEventListener('load', init, false)
+        
+        function init(){
+            document.getElementById('countUp').addEventListener('click', countUp, false);
+        }
+        
+        function countUp(){
+            document.getElementById('counter').textContent =
+            parseInt(document.getElementById('counter').textContent) + 1;
+        }
+        
+    </script>
+    <style type="text/css">
+        body{
+            margin: 0;
+            text-align: center;
+        }
+        h1{
+            margin: 0;
+            background-color: #889bb3;
+            color: #ffffff;
+            font-size: 18pt;
+        }
+        #counter{
+            font-size: 74pt;
+        }
+        #countUp{
+            font-size: 30pt;
+        }
+        </style>
+    </head>
+    <body>
+        <h1>カウンタ</h1>
+        <p><span id="counter">0</span></p>
+        <p><button id="countUp">+1</button></p>
+    </body>
+</html>

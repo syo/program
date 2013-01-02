@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Memo Example</title>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+	<meta charset="utf-8">
+
+	<script type="text/javascript" charset="utf-8" src="cordova-1.9.0.js"></script>
+    <script type="text/javascript">
+
+      // storageのキーを取得する
+      var storageKey = location.hash.replace('#', '');
+      
+      document.addEventListener('deviceready', init, false);
+      
+      function init(){
+        document.getElementById('memo').addEventListener('change', saveMemo, false);
+        
+        document.getElementById('deleteMemo').addEventListener('click', deleteMemo, false);
+        
+        document.getElementById('gotoIndex').addEventListener('click', gotoIndex, false);
+        
+        // 初期値を挿入
+        document.getElementById('memo').value = localStorage.getItem(storageKey);
+      }
+      
+      // メモの保存処理
+      function saveMemo(){
+        localStorage.setItem(storageKey, document.getElementById('memo').value);
+      }
+
+      function deleteMemo(){
+        if(confirm('このメモを削除します。よろしいですか？')){
+          // storageから削除
+          localStorage.removeItem(storageKey);
+          alert('メモを削除しました。');
+          // メモを削除後、一覧へ移動する
+          gotoIndex();
+        }
+      }
+      
+      function gotoIndex(){
+        location.href = 'index.html';
+      }
+	
+    </script>
+    <style type="text/css">
+      * {
+        font-size: 15pt;
+      }
+      body{
+        margin: 0;
+        text-align: center;
+      }
+      h1{
+        margin: 0;
+        background-color: #889bb3;
+        color: #ffffff;
+        font-size: 18pt;
+      }
+      textarea{
+        height: 210px;
+        width: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>メモ</h1>
+    <p><textarea id="memo"></textarea></p>
+    <P><button id="deleteMemo">メモを削除する</button></p>
+    <p><button id="gotoIndex">一覧に戻る</button></p>
+  </body>
+</html>

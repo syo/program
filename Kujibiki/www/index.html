@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Kujibiki Example</title>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+	<meta charset="utf-8">
+
+	<script type="text/javascript" charset="utf-8" src="cordova-1.9.0.js"></script>
+    <script type="text/javascript">
+        
+        window.addEventListener('load',init, false);
+        
+        function init(){
+            document.getElementById('selectKuji').addEventListener('click',selectKuji,false);
+        }
+        
+        function selectKuji(){
+            var texts = document.getElementById('kuji').value.split('\n');
+            var random = Math.floor(Math.random() * texts.length);
+            alert(texts[random]);
+        }
+        
+    </script>
+    <style type="text/css">
+        body{
+            margin: 0;
+            text-align: center;
+        }
+        
+        h1{
+            margin: 0;
+            background-color: #889bb3;
+            color: #ffffff;
+            font-size: 18pt;
+        }
+        
+        textarea{
+            height: 260px;
+            width: 300px;
+        }
+        
+        selectKuji{
+            font-size: 30pt;
+        }
+        
+    </style>
+  </head>
+  <body>
+	<h1>くじ</h1>
+	<p>選択肢を改行区切りで入力</p>
+    <textarea id="kuji" rows="10"></textarea>
+      <p><button id="selectKuji"><img src="lightbulb.png">どれか一つを表示</button></p>
+  </body>
+</html>

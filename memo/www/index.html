@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Memo Example</title>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+	<meta charset="utf-8">
+
+	<script type="text/javascript" charset="utf-8" src="cordova-1.9.0.js"></script>
+    <script type="text/javascript">
+
+      document.addEventListener('deviceready', init, false);
+      
+      function init(){
+        
+        // storageに保存されているデータから、一覧を作成
+        var list = '';
+        for (i = 0; i<localStorage.length; i++){
+          // storageのi番目のキーを取得
+          var storageKey = localStorage.key(i);
+          
+          // DOMでリストを作成
+          list = document.createElement('li');
+          list.id = storageKey; // IDにstorageKeyを格納
+          list.textContent = localStorage.getItem(storageKey);
+          
+          // 作成したリストを<ul id="memoList"></ul>に挿入
+          document.getElementById('memoList').appendChild(list);
+          
+          // リストがクリックされた際に、メモの編集処理が行われるように
+          document.getElementById(storageKey).addEventListener('click', editMemo, false);
+          
+        }
+        
+        document.getElementById('newMemo').addEventListener('click', newMemo, false);
+        
+        document.getElementById('clearMemo').addEventListener('click', clearMemo, false);
+      }
+      
+      // メモの作成処理
+      function newMemo(){
+        // storageに使用するキーはタイムスタンプ
+        var newStorageKey = new Date().getTime();
+        
+        // storageにアイテムを作成
+        localStorage.setItem(newStorageKey, '');
+        
+        // 編集画面に移動
+        location.href = 'edit.html#' + newStorageKey;
+      }
+      
+      // メモの編集処理
+      function editMemo(){
+        location.href = 'edit.html#' + this.id;
+      }
+      
+      
+      // メモの全削除処理
+      function clearMemo(){
+        if(confirm('すべてメモを削除します。よろしいですか？')){
+          // storage内をすべて削除
+          localStorage.clear();
+          alert('メモをすべて削除しました。');
+          // ページリロード
+          location.reload();
+          
+        }
+      }
+      
+      
+      </script>
+    <style type="text/css">
+      * {
+        font-size: 15pt;
+      }
+      body{
+        margin: 0;
+        text-align: center;
+      }
+      h1{
+        margin: 0;
+        background-color: #889bb3;
+        color: #ffffff;
+        font-size: 18pt;
+      }
+      #memoList {
+        list-style: none;
+        text-align: left;
+        margin: 0px;
+        padding: 0px;
+      }
+      #memoList li {
+        border-bottom: solid 1px #dddddd;
+        padding: 6px 20px 6px 4px;
+        background-image: url('control_play_blue.png');
+        background-repeat: no-repeat;
+        background-position: 95% 50%;
+        width: 92%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>メモ一覧</h1>
+    <ul id="memoList"></ul>
+    <p><button id="newMemo">メモを作成する</button></p>
+    <p><button id="clearMemo">メモの全削除</button></p>
+  </body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kakezan Example</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+    <meta charset="utf-8">
+
+
+    <script type="text/javascript" charset="utf-8" src="cordova-1.9.0.js"></script>
+    <script type="text/javascript">
+      window.addEventListener('load', init, false);
+      
+      function　init(){
+        // カウンタ変数iの初期値を1に
+        // 繰り返し処理が1回終了することに変数iに1を足す
+        // 「iが20以下である」条件を満たす間、繰り返し
+        for(i=1; i<=20; i++){
+          // かけられる数を選択するDOMを生成
+          var no = document.createElement('option');
+          no.value = i;
+          no.textContent = i;
+          
+          // 作成したDOMを<select id="baseNumber"></select>に挿入
+          document.getElementById('baseNumber').appendChild(no);
+          
+        }
+        
+        document.getElementById('makeList').addEventListener('click', makeList, false);
+      }
+    
+      function makeList(){
+        var index = document.getElementById('baseNumber').selectedIndex;
+        var selectedValue = document.getElementById('baseNumber').options[index].value;
+        
+        // リストを消去
+        clearList();
+        
+        for (i=1; i<=20; i++){
+          // 掛け算の結果を表示するDOMを作成
+          var listItem = document.createElement('li');
+          listItem.textContent = selectedValue + ' x ' + i + ' = ' + (selectedValue * i);
+          
+          // 作成したDOMを<ol id="kakezanList"></ol>に挿入
+          document.getElementById('kakezanList').appendChild(listItem);
+        }
+      }
+      
+      function clearList(){
+        var kakezanList = document.getElementById('kakezanList');
+        
+        // <ol id="kakezanList"></ol>に子要素が存在しているかを確認
+        if (kakezanList.hasChildNodes()) {
+          while( kakezanList.childNodes.length >= 1 ){
+            // 最初の子要素を削除する
+            kakezanList.removeChild(kakezanList.firstChild);
+          }
+        }
+      }
+      
+    </script>
+      <style type = "text/css">
+        body {
+          margin: 0;
+          text-align: center;
+        }
+        
+        h1 {
+          margin: 0;
+          background-color: #889bb3;
+          color: #ffffff;
+          font-size: 18pt:
+        }
+        
+        ol{
+          text-align: left;
+          font-size: 10pt;
+        }
+        </style>
+  </head>
+  <body>
+	<h1>かけ算</h1>
+	<p>
+    かけられる数: <select id="baseNumber"></select>
+    <button id="makeList">計算</button>
+  </p>
+  <ol id="kakezanList"></ol>
+  </body>
+</html>
