@@ -1,0 +1,12 @@
+<html>
+	<head>
+		<script type="text/javascript">
+			function tweet(){
+				location.href = "http://twitter.com/home?status=" + encodeURIComponent(document.getElementById("test").value);
+			}
+		</script>
+	</head>
+	<body>
+		<input id="test" style="width:300" type="text" speech x-webkit-speech onwebkitspeechchange="tweet()">
+	</body>
+</html>

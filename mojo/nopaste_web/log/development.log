@@ -1,0 +1,7 @@
+[Tue Jan  1 16:53:41 2013] [info] Listening at "http://*:3000".
+[Tue Jan  1 16:54:09 2013] [debug] Your secret passphrase needs to be changed!!!
+[Tue Jan  1 16:54:09 2013] [debug] GET / (Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.101 Safari/537.11).
+[Tue Jan  1 16:54:09 2013] [debug] Routing to controller "Nopaste::Web::Example" and action "welcome".
+[Tue Jan  1 16:54:09 2013] [debug] Rendering template "example/welcome.html.ep".
+[Tue Jan  1 16:54:09 2013] [debug] Rendering template "layouts/default.html.ep".
+[Tue Jan  1 16:54:09 2013] [debug] 200 OK (0.025890s, 38.625/s).
