@@ -3,5 +3,25 @@
     "coordinate": "jre:jre:zip:call:1.0.0",
     "location": "/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar",
     "status": "RESOLVED"
+  },
+  "/Applications/eclipse/sdk/platforms/android-19/android.jar": {
+    "location": "/Applications/eclipse/sdk/platforms/android-19/android.jar",
+    "status": "UNRESOLVED",
+    "error": "No call model found for \u0027/Applications/eclipse/sdk/platforms/android-19/android.jar\u0027. Neither fingerprint \u002734d1182407c92fcab06a6d769019b9f59c3c5e23\u0027 nor symbolic name \u0027android\u0027 are known."
+  },
+  "/Users/bps/program/workspace/Decotte/PhotoManipulationApp/libs/android-support-v4.jar": {
+    "location": "/Users/bps/program/workspace/Decotte/PhotoManipulationApp/libs/android-support-v4.jar",
+    "status": "UNRESOLVED",
+    "error": "No call model found for \u0027/Users/bps/program/workspace/Decotte/PhotoManipulationApp/libs/android-support-v4.jar\u0027. Neither fingerprint \u00275896b0a4e377ac4242eb2bc785220c1c4fc052f4\u0027 nor symbolic name \u0027android-support-v4\u0027 are known."
+  },
+  "/Users/bps/program/workspace/Decotte/PhotoManipulationApp/gen": {
+    "location": "/Users/bps/program/workspace/Decotte/PhotoManipulationApp/gen",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027/Users/bps/program/workspace/Decotte/PhotoManipulationApp/gen\u0027. Skipped."
+  },
+  "/Users/bps/program/workspace/Decotte/PhotoManipulationApp/src": {
+    "location": "/Users/bps/program/workspace/Decotte/PhotoManipulationApp/src",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027/Users/bps/program/workspace/Decotte/PhotoManipulationApp/src\u0027. Skipped."
   }
 }
